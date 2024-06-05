@@ -1,0 +1,33 @@
+services:
+  app1:
+    image: nginx:latest
+    labels:
+      - cbl.dev.nginx=groupA
+    ports:
+      - 3101:80 
+    volumes:
+      - ./app1:/usr/share/nginx/html
+  app2:
+    image: nginx:latest
+    labels:
+      - cbl.dev.nginx=groupA
+    ports:
+      - 3102:80 
+    volumes:
+      - ./app2:/usr/share/nginx/html
+  app3:
+    image: nginx:latest
+    labels:
+      - cbl.dev.nginx=groupB
+    ports:
+      - 3103:80 
+    volumes:
+      - ./app3:/usr/share/nginx/html
+  app4:
+    image: nginx:latest
+    labels:
+      - cbl.dev.nginx=groupB
+    ports:
+      - 3104:80 
+    volumes:
+      - ./app3:/usr/share/nginx/html
