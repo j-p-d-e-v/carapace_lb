@@ -1,7 +1,7 @@
 use std::fs::read_to_string;
 use serde::Deserialize;
 
-
+/// The struct for Load Balancer configuration.
 #[derive(Debug,Deserialize,Clone)]
 pub struct LoadBalancer {
     pub host: String,
@@ -16,7 +16,7 @@ pub struct LoadBalancer {
     #[serde(default)]
     pub allow_file_types_pattern: String,
 }
-
+/// The struct for Proxy Service configuration.
 #[derive(Debug,Deserialize,Clone)]
 pub struct ProxyService {
     #[serde(default)]
@@ -31,14 +31,14 @@ pub struct ProxyService {
     #[serde(default)]
     pub host: String,
 }
-
+/// The struct for Health Check configuration.
 #[derive(Debug,Deserialize,Clone)]
 pub struct HealthCheck {
     pub health_check_frequency: u64,
     pub update_frequency: u64,
     pub parallel_health_check: bool
 }
-
+/// The struct that holds the configurations.
 #[derive(Debug,Deserialize,Clone)]
 pub struct Config {
     pub load_balancer: LoadBalancer,

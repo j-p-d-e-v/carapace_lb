@@ -6,6 +6,8 @@ use std::sync::{Arc, Mutex};
 use http::uri::Uri;
 use crate::routes::{BackendMapping, Routes};
 
+
+/// The load balancer struct that holdsthe Load Balancer instance and the configuration values. It inherits the ProxyHttp trait.
 pub struct LB {
     pub load_balancer: Arc<LoadBalancer<RoundRobin>>,
     pub config: Config
@@ -80,6 +82,7 @@ impl ProxyHttp for LB {
 }
 
 impl LB {
+    /// Check if the url path is targeting a file.
     pub fn get_file_in_path(&self,pattern: String, path: String) -> Option<String> {
         use regex::Regex;
         let regex_pattern: &str = pattern.as_str();        

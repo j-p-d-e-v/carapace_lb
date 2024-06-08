@@ -1,11 +1,14 @@
 use std::{fs, io::{Read, Write}};
 use serde::{Deserialize, Serialize};
 
+
+/// The struct for reading and writing backend mapping.
 #[derive(Deserialize,Serialize,Debug,Clone)]
 pub struct Routes {
     pub mapping: Vec<BackendMapping>,
     pub path: String
 }
+/// The struct for defining the IP:Port address and its assigned path.
 #[derive(Deserialize,Serialize,Debug,Clone)]
 pub struct BackendMapping {
     pub addr: String,

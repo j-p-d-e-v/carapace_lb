@@ -9,6 +9,7 @@ use crate::docker::DockerService;
 use crate::config::{Config, ProxyService};
 use crate::routes::{BackendMapping, Routes};
 
+/// The service discovery instance having config as its properties it also inherits the Service Discovery trait.
 pub struct SD {
     pub config: Config
 }
