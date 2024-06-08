@@ -31,9 +31,11 @@ pub fn launch_server(){
             let health_check = TcpHealthCheck::new();
             let health_check_frequency: u64 = config.health_check.health_check_frequency;
             let update_frequency: u64 = config.health_check.update_frequency;
+            let parallel_health_check: bool = config.health_check.parallel_health_check;
             upstreams.set_health_check(health_check);
             upstreams.health_check_frequency = Some(Duration::from_millis(health_check_frequency));
             upstreams.update_frequency = Some(Duration::from_millis(update_frequency));
+            upstreams.parallel_health_check = parallel_health_check;
 
             let background = background_service("health_check", upstreams);
             let upstreams = background.task();

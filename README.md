@@ -7,8 +7,6 @@ A path based load balancer for docker containers. Uses [Pingora Framework by Clo
 - [ ] Test using Websocket
 OTHER TASKS TBD...
 
-#Cross Compile
-https://gist.github.com/imWildCat/af08dc7e3f1ee23d4777e45116a8c407
 
 # Configuration
 
