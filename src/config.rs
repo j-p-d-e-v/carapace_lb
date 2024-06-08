@@ -6,7 +6,15 @@ use serde::Deserialize;
 pub struct LoadBalancer {
     pub host: String,
     pub port: u16,
-    pub routes_path: String
+    pub routes_path: String,
+    #[serde(default)]
+    pub enable_tls_ssl: bool,
+    #[serde(default)]
+    pub ca_crt_path: String,
+    #[serde(default)]
+    pub ca_pem_path: String,
+    #[serde(default)]
+    pub allow_file_types_pattern: String,
 }
 
 #[derive(Debug,Deserialize,Clone)]

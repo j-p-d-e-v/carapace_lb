@@ -2,6 +2,10 @@
 host="0.0.0.0"
 port=6170
 routes_path="routes.json"
+enable_tls_ssl=true
+ca_crt_path="certs/localhost.crt"
+ca_pem_path="certs/localhost.pem"
+allow_file_types_pattern="[0-9|_|-|A-Z|a-z]*\\.(js|css|png|jpeg|jpg|ico)"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
