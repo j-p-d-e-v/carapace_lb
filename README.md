@@ -1,15 +1,14 @@
 # Container Load Balancer (CBL)
 
-A load balancer for containers. Uses [Pingora Framework by Cloudflare](https://github.com/cloudflare/pingora).
+A path based load balancer for docker containers. Uses [Pingora Framework by Cloudflare](https://github.com/cloudflare/pingora).
 
 # Todo
-- [x] Develop a struct for retrieving containers based on labels.
-- [x] Develop confinguration using TOML for defining the load balancer, proxy services, and healthchecks.
-- [x] Develop Service Discovery and uses the discovered containers IP:PORT as upstreams.
-- [ ] Develop Load Balancer and Specific Routing / Targeting specific upstream
 - [ ] Add TLS/SSL Feature
 - [ ] Test using Websocket
 OTHER TASKS TBD...
+
+#Cross Compile
+https://gist.github.com/imWildCat/af08dc7e3f1ee23d4777e45116a8c407
 
 # Configuration
 

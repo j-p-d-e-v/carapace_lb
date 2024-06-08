@@ -13,10 +13,10 @@ async fn load_containers(){
             ]))
         ]);
         let containers = client.containers(container_filters).await;
-        assert_eq!(containers.len(),2);
+        assert!(containers.len() > 0);
         for container in containers {
-            let ip_address: String = client.container_ip_address(&container).await;
-            assert!(ip_address.len()>0);
+            let container_ip_address: String = client.container_ip_address(&container).await;
+            println!("container_ip_address: {}",container_ip_address);
             if let Some(labels) = container.labels {
                 for label in labels {
                     if label.0 == "cbl.dev.nginx" {

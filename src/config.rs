@@ -5,7 +5,8 @@ use serde::Deserialize;
 #[derive(Debug,Deserialize,Clone)]
 pub struct LoadBalancer {
     pub host: String,
-    pub port: u16
+    pub port: u16,
+    pub routes_path: String
 }
 
 #[derive(Debug,Deserialize,Clone)]
@@ -13,13 +14,17 @@ pub struct ProxyService {
     pub container_label_key: String,
     pub container_label_value: String,
     pub container_path: String,
-    pub container_port: u16 
+    pub container_port: u16,
+    #[serde(default)]
+    pub container_private: bool,
+    #[serde(default)]
+    pub container_public_ip: String,
 }
 
 #[derive(Debug,Deserialize,Clone)]
 pub struct HealthCheck {
-    pub health_check_frequency: u16,
-    pub update_frequency: u16,
+    pub health_check_frequency: u64,
+    pub update_frequency: u64,
     pub parallel_health_check: bool
 }
 

@@ -1,5 +1,4 @@
-use std::os::unix::net::SocketAddr;
-use bollard::{container, Docker};
+use bollard::Docker;
 use bollard::container::ListContainersOptions;
 use std::default::Default;
 use std::collections::HashMap;
@@ -38,7 +37,7 @@ impl DockerService {
             }
         }
     }
-
+    
     pub async fn container_ip_address(&self,container: &ContainerSummary) -> String {
         if let Some(container_id) = &container.id {
             if let Some(host_config) = &container.host_config {

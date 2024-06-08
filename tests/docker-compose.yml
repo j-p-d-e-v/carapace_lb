@@ -10,7 +10,7 @@ services:
   app2:
     image: nginx:latest
     labels:
-      - cbl.dev.nginx=groupA
+      - cbl.dev.nginx=groupC
     ports:
       - 3102:80 
     volumes:
@@ -20,14 +20,4 @@ services:
     labels:
       - cbl.dev.nginx=groupB
     ports:
-      - 3103:80 
-    volumes:
-      - ./app3:/usr/share/nginx/html
-  app4:
-    image: nginx:latest
-    labels:
-      - cbl.dev.nginx=groupB
-    ports:
-      - 3104:80 
-    volumes:
-      - ./app3:/usr/share/nginx/html
+      - 3103:80
