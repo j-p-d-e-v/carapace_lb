@@ -4,12 +4,15 @@ use std::default::Default;
 use std::collections::HashMap;
 use bollard::models::ContainerSummary;
 
+/// The struct for connecting to docker daemon and get the containers.
 #[derive(Debug)]
 pub struct DockerService {
     docker: Docker,
 }
 
 impl DockerService {
+
+    /// Connect to docker daemon and create an instance of it.
     pub async fn new() -> Self {
         match Docker::connect_with_local_defaults() {
             Ok(docker) => {
@@ -22,6 +25,8 @@ impl DockerService {
             }
         }      
     }
+
+    /// Get the list of containers with filters.
     pub async fn containers(&self, filters: HashMap<String,Vec<String>>) -> Vec<ContainerSummary> {
         let options: Option<ListContainersOptions<_>> = Some(ListContainersOptions {
             all: false,
@@ -38,6 +43,7 @@ impl DockerService {
         }
     }
     
+    /// Get container ip address in Network Settings.
     pub async fn container_ip_address(&self,container: &ContainerSummary) -> String {
         if let Some(container_id) = &container.id {
             if let Some(host_config) = &container.host_config {

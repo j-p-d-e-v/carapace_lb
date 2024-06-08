@@ -16,6 +16,7 @@ use pingora::lb::{
 use pingora::proxy::HttpProxy;
 use pingora::services::listening::Service;
 
+/// Launch the load balancer server.
 pub fn launch_server(){
     let config: Config = Config::new("config.toml".to_string());
     let ca_crt_file: &String = &config.load_balancer.ca_crt_path;
