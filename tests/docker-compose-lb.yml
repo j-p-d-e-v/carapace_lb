@@ -1,12 +1,10 @@
 services:
   lb:
     hostname: lb
-    image: ubuntu:rust-docker
+    image: ubuntu:rust2
     ports:
       - 6170:6170 
     working_dir: /rust
-    environment:
-      - RUSTFLAGS=-C lto=true 
     tty: true
     volumes:
       - ../:/rust

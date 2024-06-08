@@ -43,6 +43,9 @@ allow_file_types_pattern="[0-9|_|-|A-Z|a-z]*\\.(js|css|png|jpeg|jpg|ico)"
 ```
 
 ### `[[proxy_services]]`
+
+**When enabling ```use_container``` please make sure that the load balancer has local access to the docker daemon and to the network of the containers.**
+
 Configure the proxy services for container discovery based on container labels.
 
 | Property               | Description                                                                 |
