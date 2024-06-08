@@ -24,7 +24,7 @@ impl ProxyHttp for LB {
         _ctx: &mut Self::CTX,
     ) -> Result<Box<HttpPeer>> {
         let config = self.config.clone();
-        let container_path: Arc<Mutex<String>> =  Arc::new(Mutex::new(String::new()));
+        let matched_path: Arc<Mutex<String>> =  Arc::new(Mutex::new(String::new()));
         let url_path = _session.req_header().uri.path().to_string();
         let backend_routes: Routes = Routes::new(config.load_balancer.routes_path);
         let backend_mapping: Vec<BackendMapping> = backend_routes.read();
@@ -40,7 +40,7 @@ impl ProxyHttp for LB {
                 }
                 else {
                     if is_addr_matched_accepted && url_path.starts_with(bm.path.as_str())  {
-                        let mut path: std::sync::MutexGuard<String> = container_path.lock().unwrap();
+                        let mut path: std::sync::MutexGuard<String> = matched_path.lock().unwrap();
                         *path = bm.path.clone();
                         return true;
                     }
@@ -52,10 +52,10 @@ impl ProxyHttp for LB {
             false
         }) {
             Some(upstream) => {
-                let container_path: String = container_path.lock().unwrap().clone();
-                if !container_path.is_empty() {
+                let path: String = matched_path.lock().unwrap().clone();
+                if !path.is_empty() {
                     _session.req_header_mut().set_uri(Uri::try_from(
-                        url_path.replace(container_path.as_str(), "/")
+                        url_path.replace(path.as_str(), "/")
                     ).unwrap());
                 }
                 let peer: Box<HttpPeer> = Box::new(

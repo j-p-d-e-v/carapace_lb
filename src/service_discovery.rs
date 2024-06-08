@@ -21,34 +21,51 @@ impl ServiceDiscovery for SD {
         let backend_routes: Routes = Routes::new(self.config.load_balancer.routes_path.clone());
         let mut backend_mapping: Vec<BackendMapping> = Vec::new();
         for ps in proxy_services {  
-            let container_port: u16 = ps.container_port; 
-            let container_path: String = ps.container_path;       
-            let containers = docker_service.containers(HashMap::from([(
-                "label".to_string(),
-                Vec::from([format!("{}={}",ps.container_label_key,ps.container_label_value)])
-            )])).await;            
-            for container in containers {
-                let container_ip_address: String = if ps.container_private {
-                    docker_service.container_ip_address(&container).await
-                } else {
-                    ps.container_public_ip.clone()
-                };
-                if container_ip_address.is_empty() {
-                    panic!("CONTAINER_NO_IP_ADDRESS: {}",container.id.unwrap());
+            let port: u16 = ps.port; 
+            let path: String = ps.path;  
+            if ps.use_container {     
+                let containers = docker_service.containers(HashMap::from([(
+                    "label".to_string(),
+                    Vec::from([format!("{}={}",ps.container_label_key,ps.container_label_value)])
+                )])).await;            
+                for container in containers {
+                    let container_ip_address: String = docker_service.container_ip_address(&container).await;
+                    if container_ip_address.is_empty() {
+                        panic!("CONTAINER_NO_IP_ADDRESS: {}",container.id.unwrap());
+                    }
+                    let addr_string: String = format!("{}:{}",container_ip_address,port);
+                    let addr: SocketAddr = self.to_socket_addr(container_ip_address,port);
+                    let backend = Backend { addr, weight: 1};
+                    backend_mapping.push(BackendMapping{
+                        addr: addr_string,
+                        path: path.clone()
+                    });
+                    backends.insert(backend);
                 }
-                let addr_string: String = format!("{}:{}",container_ip_address,container_port);
-                let addr: SocketAddr = addr_string.parse::<SocketAddr>().unwrap_or_else(|error| {
-                    panic!("PROXY_SERVICE_ADDR_FAILED: {:?}",error);
-                });
-                let backend = Backend { addr, weight: 1};
+            }
+            else{                
+                let addr_string: String = format!("{}:{}",ps.host.clone(),port);  
+                let addr: SocketAddr = self.to_socket_addr(ps.host,port);
+                let backend = Backend { addr, weight: 1 };
                 backend_mapping.push(BackendMapping{
                     addr: addr_string,
-                    path: container_path.clone()
+                    path: path.clone()
                 });
                 backends.insert(backend);
+                
             }
         }
         backend_routes.write(backend_mapping);
         Ok((backends, HashMap::new()))
+    }
+}
+
+impl SD {
+    fn to_socket_addr(&self,host: String, port: u16) -> SocketAddr {
+        let addr_string: String = format!("{}:{}",host,port);  
+        let addr: SocketAddr = addr_string.parse::<SocketAddr>().unwrap_or_else(|error| {
+            panic!("SERVICE_DISCOVERY_SOCKET_ADDR_PARSE_ERROR: {:?}",error);
+        });
+        addr
     }
 }

@@ -11,14 +11,17 @@ pub struct LoadBalancer {
 
 #[derive(Debug,Deserialize,Clone)]
 pub struct ProxyService {
+    #[serde(default)]
     pub container_label_key: String,
+    #[serde(default)]
     pub container_label_value: String,
-    pub container_path: String,
-    pub container_port: u16,
     #[serde(default)]
-    pub container_private: bool,
+    pub path: String,
+    pub port: u16,
     #[serde(default)]
-    pub container_public_ip: String,
+    pub use_container: bool,
+    #[serde(default)]
+    pub host: String,
 }
 
 #[derive(Debug,Deserialize,Clone)]

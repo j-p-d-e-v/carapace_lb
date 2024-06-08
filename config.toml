@@ -6,26 +6,26 @@ routes_path="routes.json"
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupA"
-container_path = "/"
-container_port = 80
-container_private = true
-container_public_ip = "0.0.0.0"
+path = "/"
+port = 80
+use_container = true
+host = "0.0.0.0"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupC"
-container_path="/"
-container_port = 80
-container_private = true
-container_public_ip = "0.0.0.0"
+path="/"
+use_container = true
+port = 80
+host = "0.0.0.0"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupB"
-container_path = "/app3"
-container_port = 80
-container_private = true
-container_public_ip = "0.0.0.0"
+path = "/app3"
+use_container = true
+port = 80
+host = "0.0.0.0"
 
 [health_check]
 health_check_frequency=1000
