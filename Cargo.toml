@@ -2,6 +2,12 @@
 name = "carapace"
 version = "0.1.0"
 edition = "2021"
+description = "Carapace is a path-based load balancer that leverages the Pingora Framework by Cloudflare to manage and route traffic efficiently."
+repository = "https://github.com/j-p-d-e-v/carapace"
+license = "Apache-2.0"
+authors = ["JP Mateo <jpmateo022@gmail.com>"]
+categories = ["asynchronous","network-programming","web-programming","web-programming::http-server"]
+keywords = ["pingora", "personal-project","warp","load-balancer"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
