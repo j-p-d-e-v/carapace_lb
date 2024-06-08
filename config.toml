@@ -7,24 +7,24 @@ routes_path="routes.json"
 container_label_key="cbl.dev.nginx"
 container_label_value="groupA"
 path = "/"
-port = 80
-use_container = true
+port = 3101
+use_container=false
 host = "0.0.0.0"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupC"
 path="/"
-use_container = true
-port = 80
+use_container=false
+port = 3102
 host = "0.0.0.0"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupB"
 path = "/app3"
-use_container = true
-port = 80
+use_container=false
+port = 3103
 host = "0.0.0.0"
 
 [health_check]
