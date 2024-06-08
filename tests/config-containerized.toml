@@ -1,0 +1,37 @@
+[load_balancer]
+host="0.0.0.0"
+port=6170
+routes_path="routes.json"
+enable_tls_ssl=true
+ca_crt_path="certs/localhost.crt"
+ca_pem_path="certs/localhost.pem"
+allow_file_types_pattern="[0-9|_|-|A-Z|a-z]*\\.(js|css|png|jpeg|jpg|ico)"
+
+[[proxy_services]]
+container_label_key="cbl.dev.nginx"
+container_label_value="groupA"
+path = "/app1"
+port = 443
+use_container=true
+host = "0.0.0.0"
+
+[[proxy_services]]
+container_label_key="cbl.dev.nginx"
+container_label_value="groupC"
+path="/app1"
+use_container=true
+port = 443
+host = "0.0.0.0"
+
+[[proxy_services]]
+container_label_key="cbl.dev.nginx"
+container_label_value="groupB"
+path = "/app3"
+use_container=true
+port = 443
+host = "0.0.0.0"
+
+[health_check]
+health_check_frequency=1000
+update_frequency=1500
+parallel_health_check=false

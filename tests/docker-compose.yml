@@ -25,6 +25,7 @@ services:
       - cbl.dev.nginx=groupB
     volumes:
       - ./app3:/usr/share/nginx/html
+      - ./app3/default.conf:/etc/nginx/conf.d/default.conf
       - ../certs:/etc/certs
     ports:
-      - 3103:80
+      - 3103:443

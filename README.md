@@ -13,6 +13,10 @@ https://github.com/cloudflare/pingora/blob/main/docs/user_guide/conf.md
 
 The configuration uses the TOML format. For more details, refer to the [TOML documentation](https://toml.io/en/v1.0.0).
 
+# High Level Diagram
+
+![Diagram](./tests/digram.jpg)
+
 ### `[load_balancer]`
 Configure the load balancer.
 
