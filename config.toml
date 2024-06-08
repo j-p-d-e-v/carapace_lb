@@ -10,7 +10,7 @@ allow_file_types_pattern="[0-9|_|-|A-Z|a-z]*\\.(js|css|png|jpeg|jpg|ico)"
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupA"
-path = "/"
+path = "/app1"
 port = 3101
 use_container=false
 host = "0.0.0.0"
@@ -18,7 +18,7 @@ host = "0.0.0.0"
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupC"
-path="/"
+path="/app1"
 use_container=false
 port = 3102
 host = "0.0.0.0"
