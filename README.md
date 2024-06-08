@@ -15,7 +15,7 @@ The configuration uses the TOML format. For more details, refer to the [TOML doc
 
 # High Level Diagram
 
-![Diagram](./tests/digram.jpg)
+![Diagram](./docs/digram.jpg)
 
 ### `[load_balancer]`
 Configure the load balancer.
