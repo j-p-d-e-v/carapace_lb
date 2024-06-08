@@ -1,8 +1,8 @@
 [package]
-name = "carapace"
+name = "carapace_lb"
 version = "0.1.0"
 edition = "2021"
-description = "Carapace is a path-based load balancer that leverages the Pingora Framework by Cloudflare to manage and route traffic efficiently."
+description = "Carapace LB is a path-based load balancer that leverages the Pingora Framework by Cloudflare to manage and route traffic efficiently."
 repository = "https://github.com/j-p-d-e-v/carapace"
 license = "Apache-2.0"
 authors = ["JP Mateo <jpmateo022@gmail.com>"]

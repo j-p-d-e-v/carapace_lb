@@ -1,6 +1,6 @@
-# Carapace - A Path Based Load Balancer
+# Carapace LB - A Path Based Load Balancer
 
-Carapace is a path-based load balancer that leverages the [Pingora Framework by Cloudflare](https://github.com/cloudflare/pingora) to manage and route traffic efficiently.
+Carapace LB is a path-based load balancer that leverages the [Pingora Framework by Cloudflare](https://github.com/cloudflare/pingora) to manage and route traffic efficiently.
 
 ```
 NOTE: I havent included SNI here because I dont have yet a good understanding on how to apply SNI in pingora.
