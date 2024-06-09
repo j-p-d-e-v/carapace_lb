@@ -29,6 +29,7 @@ Configure the load balancer.
 | `ca_crt_path`| The certficate path for the .crt file. |
 | `ca_pem_path`| The certficate path for the .pem file. |
 | `allow_file_types_pattern`| The regular expression pattern for matching files in the url path. |
+| `debug`| Set to empty string ```""```. If set to ```"INFO"``` it will only print minimal info. such as Upstream Address and the URL Path. If set to ```"DEBUG"``` it will only print minimal info. such as Upstream Address and all the request information.   |
 
 #### Example
 ```toml
@@ -40,6 +41,7 @@ enable_tls_ssl=true
 ca_crt_path="certs/localhost.crt"
 ca_pem_path="certs/localhost.pem"
 allow_file_types_pattern="[0-9|_|-|A-Z|a-z]*\\.(js|css|png|jpeg|jpg|ico)"
+debug="INFO"
 ```
 
 ### `[[proxy_services]]`
@@ -100,6 +102,14 @@ parallel_health_check=false
 ```
 cargo build
 ```
+
+#### Build Specific Platform
+
+```
+cargo build --target=x86_64-unknown-linux-gnu
+```
+
+See ```rustup target list``` for the list of platforms.
 
 ### Test
 

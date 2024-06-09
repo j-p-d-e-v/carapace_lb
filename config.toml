@@ -1,34 +1,35 @@
 [load_balancer]
 host="0.0.0.0"
-port=6170
+port=6171
 routes_path="routes.json"
 enable_tls_ssl=true
 ca_crt_path="certs/localhost.crt"
 ca_pem_path="certs/localhost.pem"
 allow_file_types_pattern="[0-9|_|-|A-Z|a-z]*\\.(js|css|png|jpeg|jpg|ico)"
+debug="INFO"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupA"
-path = "/app23"
-port = 443
-use_container=true
+path = "/app1"
+port = 3101
+use_container=false
 host = "0.0.0.0"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupC"
-path="/app23"
-use_container=true
-port = 443
+path="/app1"
+use_container=false
+port = 3102
 host = "0.0.0.0"
 
 [[proxy_services]]
 container_label_key="cbl.dev.nginx"
 container_label_value="groupB"
 path = "/app3"
-use_container=true
-port = 443
+use_container=false
+port = 3103
 host = "0.0.0.0"
 
 [health_check]

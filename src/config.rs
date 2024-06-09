@@ -15,6 +15,8 @@ pub struct LoadBalancer {
     pub ca_pem_path: String,
     #[serde(default)]
     pub allow_file_types_pattern: String,
+    #[serde(default)]
+    pub debug: String
 }
 /// The struct for Proxy Service configuration.
 #[derive(Debug,Deserialize,Clone)]
